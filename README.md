@@ -18,7 +18,7 @@ _Works with [Framer](https://framer.com) v120 or later_
 #### Table of contents
 [Installation](#installation)  
 [Quick start](#quick-start)  
-[Documentation](#documentation)
+[Documentation](#documentation)  
 [Known limitations](#known-limitations)  
 [Releases](#releases)  
 [License](#license)  
@@ -110,19 +110,19 @@ ScrollController consists of 4 components: `Controller`, `Scene`, `Tween` and `P
 
 ### Controller
 | Property | Type | Default | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| [`new ScrollController`](#new-Controller) | Class | - | Create controller |
+| :--- | :--- | :--- | :--- |
+| [`new ScrollController`](#new-scrollcontroller) | Class | - | Create controller |
 | `Controller.source` | Object | - | Get controller source |
 | `Controller.name` | String | `"."` | Get/Set controller name |
 | `Controller.direction` | String | `"vertical"` | Get controller scroll direction |
 | `Controller.throttle` | Number | `0` | Get/Set controller throttling |
 | `Controller.enabled` | Boolean | `true` | Get/Set controller enabled state |
-| [`Controller.addScene`](#controller.addscene) | Method | - | Add scene to controller |
-| [`Controller.removeScene`](#controller.removescene) | Method | - | Remove scene from controller |
-| [`Controller.scrollTo`](#controller.scrollto) | Method | - | Scroll to scene, progress, layer or offset |
-| [`Controller.update`](#controller.update) | Method | - | Force controller update |
-| [`Controller.refresh`](#controller.refresh) | Method | - | Force controller refresh |
-| [`Controller.remove`](#controller.remove) | Method | - | Remove controller |
+| [`Controller.addScene`](#controlleraddscene) | Method | - | Add scene to controller |
+| [`Controller.removeScene`](#controllerremovescene) | Method | - | Remove scene from controller |
+| [`Controller.scrollTo`](#controllerscrollto) | Method | - | Scroll to scene, progress, layer or offset |
+| [`Controller.update`](#controllerupdate) | Method | - | Force controller update |
+| [`Controller.refresh`](#controllerrefresh) | Method | - | Force controller refresh |
+| [`Controller.remove`](#controllerremove) | Method | - | Remove controller |
 
 #### new ScrollController
 Create controller.
@@ -265,7 +265,7 @@ myController.remove true
 
 ### Scene
 | Property | Type | Default | Description |
-| :--- | :--- | :--- | :--- | :--- |
+| :--- | :--- | :--- | :--- |
 | `Scene.source` | Object | `ScrollComponent` | Get scene ScrollComponent |
 | `Scene.controller` | Object | `Controller` | Get scene controller |
 | `Scene.name` | String | `"."` | Get/Set scene name |
@@ -289,22 +289,22 @@ myController.remove true
 | `Scene.offsetEnd`| Number | - | Get scene offset end |
 | `Scene.tweens` | Array | - | Get scene tweens |
 | `Scene.pins` | Array | - | Get scene pins |
-| [`Scene.addTween`](#scene.addtween) | Method | - | Add scene tween |
-| [`Scene.removeTween`](#scene.removetween) | Method | - | Remove scene tween |
-| [`Scene.addPin`](#scene.addpin) | Method | - | Add scene pin |
-| [`Scene.removePin`](#scene.removepin) | Method | - | Remove scene pin |
-| [`Scene.trigger`](#scene.trigger) | Method | - | Trigger scene event |
-| [`Scene.update`](#scene.update) | Method | - | Force scene update |
-| [`Scene.refresh`](#scene.refresh) | Method | - | Force scene refresh |
-| [`Scene.remove`](#scene.remove) | Method | - | Remove scene |
-| [`Scene.onChangeValue`](#scene.onevent) | Event | - | On change value |
-| [`Scene.onShift`](#scene.onevent) | Event | - | On shift |
-| [`Scene.onUpdate`](#scene.onevent) | Event | - | On update |
-| [`Scene.onEnter`](#scene.onevent) | Event | - | On enter |
-| [`Scene.onStart`](#scene.onevent) | Event | - | On start |
-| [`Scene.onProgress`](#scene.onevent) | Event | - | On progress |
-| [`Scene.onEnd`](#scene.onevent) | Event | - | On end |
-| [`Scene.leave`](#scene.onevent) | Event | - | On leave |
+| [`Scene.addTween`](#sceneaddtween) | Method | - | Add scene tween |
+| [`Scene.removeTween`](#sceneremovetween) | Method | - | Remove scene tween |
+| [`Scene.addPin`](#sceneaddpin) | Method | - | Add scene pin |
+| [`Scene.removePin`](#sceneremovepin) | Method | - | Remove scene pin |
+| [`Scene.trigger`](#scenetrigger) | Method | - | Trigger scene event |
+| [`Scene.update`](#sceneupdate) | Method | - | Force scene update |
+| [`Scene.refresh`](#scenerefresh) | Method | - | Force scene refresh |
+| [`Scene.remove`](#sceneremove) | Method | - | Remove scene |
+| [`Scene.onChangeValue`](#sceneonevent) | Event | - | On change value |
+| [`Scene.onShift`](#sceneonevent) | Event | - | On shift |
+| [`Scene.onUpdate`](#sceneonevent) | Event | - | On update |
+| [`Scene.onEnter`](#sceneonevent) | Event | - | On enter |
+| [`Scene.onStart`](#sceneonevent) | Event | - | On start |
+| [`Scene.onProgress`](#sceneonevent) | Event | - | On progress |
+| [`Scene.onEnd`](#sceneonevent) | Event | - | On end |
+| [`Scene.onLeave`](#sceneonevent) | Event | - | On leave |
 
 #### Scene.addTween
 Add tween to scene.
@@ -520,7 +520,7 @@ myScene.onLeave event, instance, ->
 | `Tween.options` | Object | `Framer.Defaults.Animation` | Get tween animation options |
 | `Tween.init` | Boolean | `true` | Get tween animation initialisation state |
 | `Tween.enabled` | Boolean | `true` | Get/Set tween enabled state |
-| [`Tween.remove`](#Tween.remove) | Method | - | Remove tween |
+| [`Tween.remove`](#tweenremove) | Method | - | Remove tween |
 
 #### Tween.remove
 Remove tween from scene.
@@ -547,7 +547,7 @@ myTween.remove true
 | `Pin.layer` | Layer | `Scene.triggerLayer` | Get pin layer |
 | `Pin.enabled` | Boolean | `true` | Get/Set pin enabled state |
 | `Pin.state` | String | `"pinned"` or `"unpinned"` | Get pin state |
-| [`Pin.remove`](#Pin.remove) | Method | - | Remove pin |
+| [`Pin.remove`](#pinremove) | Method | - | Remove pin |
 
 #### Pin.remove
 Remove pin from scene.
