@@ -1,0 +1,9 @@
+{
+	"name": "ScrollController",
+	"description": "Animate, pin and trigger events based on scroll position",
+	"author": "Jesper Bentzen",
+	"require": "{ScrollController} = require 'ScrollController'",
+	"install": "ScrollController.coffee",
+	"example": "example.coffee",
+	"thumb": "assets/thumb.png"
+}
