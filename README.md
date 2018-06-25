@@ -17,6 +17,7 @@ _Works with [Framer](https://framer.com) v120 or later_
 
 #### Table of contents
 [Installation](#installation)  
+[Demo](#demo)  
 [Quick start](#quick-start)  
 [Documentation](#documentation)  
 [Known limitations](#known-limitations)  
@@ -45,12 +46,16 @@ _Works with [Framer](https://framer.com) v120 or later_
 3. Drag the file `ScrollController.coffee` into the code editor.
 4. Change `ScrollController` to `{ScrollController}` in the require command
 
-<a href="https://github.com/jbentzen/framer-scrollcontroller/releases/download/v1.0.0/scrollcontroller.zip">
+<a href="https://github.com/jbentzen/framer-scrollcontroller/releases/download/v1.0.1/scrollcontroller.zip">
   <img img width="110" height="40" src="assets/download.png">
 </a>
 
+## Demo
+
+![ScrollController Example](assets/scrollcontroller_example.gif)
+
 ## Quick start
-To get started using the `ScrollController` you must start by creating a `Controller` to make the required connection to the `ScrollComponent`. Secondly you must add at least one `Scene` which defines in what part of the page something should happen. Finally you must add at least one `Tween` or `Pin` to define what needs to happen.
+To get started using the `ScrollController` you must start by creating a `Controller` to make the required connection to the `ScrollComponent`. Secondly you must add at least one `Scene` which defines in what part of the page/view something should happen. Finally you must add at least one `Tween` or `Pin` to define what needs to happen.
 
 ##### Step 1: Import module
 ```coffee
@@ -100,7 +105,7 @@ myScene.addPin()
 ```
 
 ## Documentation
-ScrollController consists of 4 components: `Controller`, `Scene`, `Tween` and `Pin`. Learn about each components properties in the documentation:
+ScrollController consists of 4 components: `Controller`, `Scene`, `Tween` and `Pin`. Learn about each components and its properties in the documentation:
 
 #### Components
 [Controller](#controller)  
@@ -109,6 +114,8 @@ ScrollController consists of 4 components: `Controller`, `Scene`, `Tween` and `P
 [Pin](#pin)
 
 ### Controller
+The controller establishes the required connection to the ScrollComponent and manages attached scenes by either updating or refreshing them whenever the ScrollComponent changes its size or when its scroll position changes. The controller manages one direction - create two controllers if you need to manage both horizontal and vertical movement at the same time.
+
 | Property | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
 | [`new ScrollController`](#new-scrollcontroller) | Class | - | Create controller |
@@ -264,6 +271,8 @@ myController.remove true
 
 
 ### Scene
+The scene defines in what part of the page/view something should happen and manages all attached tweens and pins. The scene has a start position defined by either a layer (triggerLayer) and/or an offset (from the triggerLayer or from top/left of screen if no triggerLayer is defined). The scene can also have an end if a duration is defined. Every scene has a needle (defined by a number between 0 and 1, start of screen is 0, end of screen is 1). The needle triggers events once it reaches the start, the end and whenever it enters, progresses and leaves the scene. A scene can be setup easily and precisely by enabling the guide.
+
 | Property | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
 | `Scene.source` | Object | `ScrollComponent` | Get scene ScrollComponent |
@@ -508,6 +517,8 @@ myScene.onLeave event, instance, ->
 
 
 ### Tween
+The tween defines what happens in a scene by animating a defined layer (triggerLayer by default) between states defined by from and/or to properties. The tween will start its animation (with its defined animation options) when its scene starts or it will modulate based on scroll progress between from and to when its scene starts until it ends if the scene has a duration. Multiple tweens can be added on the same layer with the same properties if their scenes are defined in succession and the tweens define both from and to properties and disable their initialisation.
+
 | Property | Type | Default | Description |
 | :--- | :--- | :--- |  :--- |
 | `Tween.source` | Object | `ScrollComponent` | Get tween ScrollComponent |
@@ -538,6 +549,8 @@ myTween.remove true
 
 
 ### Pin
+The pin defines what happens in a scene by pinning a defined layer (triggerLayer by default). The pin will pin its layer when its scene starts and unpins its layer when its scene ends if the scene has a duration. Multiple pins can be added on the same layer in the same direction if their scenes are defined in succession.
+
 | Property | Type | Default |  Description |
 | :--- | :--- | :--- | :--- |
 | `Pin.source` | Object | `ScrollComponent` | Get pin ScrollComponent |
@@ -568,10 +581,11 @@ myPin.remove true
 
 - It is not recommended to use ScrollController for “clicky” mousewheel scrolling due to the nature of its scrolling behavior.
 - Overlapping pins on the same layer in the same direction is not supported, use successive pinning instead.
-- Successive tweening requires the use of both `from`, `to` and `init: false` for all but the first tween.
+- Overlapping tweens on the same layer with the same properties is not supported, use successive tweening instead and define `from`, `to` and `init: false` for all but the first tween.
 - Removing tweens on a layer with remaining tweens is not supported.
 
 ## Releases
+- v1.0.1 - Minor optimisations
 - v1.0.0 - Initial release
 
 ## License

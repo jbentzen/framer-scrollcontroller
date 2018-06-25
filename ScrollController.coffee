@@ -1,5 +1,5 @@
 # Name: ScrollController
-# Version: 1.0.0
+# Version: 1.0.1
 # Author: Jesper Bentzen
 # Website: http://jesperbentzen.com
 # Github: https://github.com/jbentzen/framer-scrollcontroller
@@ -49,9 +49,9 @@ class Controller extends Layer
     @_initialise()
 
   _initialise: =>
-    Screen.off "resize", @_onResize
+    @_source.off "change:size", @_onResize
     @_source.off "move", @_onMove
-    Screen.on "resize", Utils.throttle @_throttle, @_onResize
+    @_source.on "change:size", Utils.throttle @_throttle, @_onResize
     @_source.on "move", Utils.throttle @_throttle, @_onMove
     @refresh()
 
@@ -116,7 +116,7 @@ class Controller extends Layer
     scene.destroy()
 
   remove: (reset) =>
-    Screen.off "resize", @_onResize
+    @_source.off "change:size", @_onResize
     @_source.off "move", @_onMove
     @removeScene(@_scenes[0], reset) for scene in @_scenes
     @destroy()
