@@ -180,8 +180,8 @@ myScene = myController.addScene()
 myScene = myController.addScene
   name: "mySceneName"
   triggerLayer: myLayer
-  offset: 100
-  duration: -200
+  offset: -100
+  duration: 200
   needle: 0.65
   reverse: false
   enabled: false
