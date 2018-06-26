@@ -96,12 +96,12 @@ myScene = myController.addScene
 	guide: true
 
 # Add tweeen
-myScene.addTween
+myTween = myScene.addTween
 	to: {rotation: -90, scale: 0.2, backgroundColor: "#00AAFF"}
 	options: {time: 0.25, curve: "Spring"}
 
 # Add pin
-myScene.addPin()
+myPin = myScene.addPin()
 ```
 
 ## Documentation
@@ -174,10 +174,10 @@ Add scene to controller.
 
 ```coffee
 # Add scene to controller with default properties
-myController.addScene()
+myScene = myController.addScene()
 
 # Add scene to controller with custom properties
-myController.addScene
+myScene = myController.addScene
   name: "mySceneName"
   triggerLayer: myLayer
   offset: 100
@@ -222,7 +222,7 @@ myController.scrollTo
 # Scroll to scene progress
 myController.scrollTo
   element: myScene
-  progress: myScene.progress
+  progress: 0.25
 
 # Scroll to layer
 myController.scrollTo
@@ -235,7 +235,7 @@ myController.scrollTo
 # Scroll to scene progress with offset
 myController.scrollTo
   element: myScene
-  progress: myScene.progress
+  progress: 0.25
   offset: 100
 ```
 
@@ -329,11 +329,11 @@ Add tween to scene.
 
 ```coffee
 # Add tween to scene with default properties
-myScene.addTween
+myTween = myScene.addTween
   from: {opacity: 0}
 
 # Add tween to scene with custom properties
-myScene.addTween
+myTween = myScene.addTween
   name: "myTween"
   layer: myOtherLayer
   from: {rotation: 0, scale: 2, backgroundColor: "white"}
@@ -367,10 +367,10 @@ Add pin to scene.
 
 ```coffee
 # Add pin to scene with default properties
-myScene.addPin()
+myPin = myScene.addPin()
 
 # Add pin to scene with custom properties
-myScene.addPin
+myPin = myScene.addPin
   name: "myPinName"
   layer: myOtherLayer
   enabled: false

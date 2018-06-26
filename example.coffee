@@ -33,9 +33,9 @@ myScene = myController.addScene
 	guide: true
 
 # Add tweeen
-myScene.addTween
+myTween = myScene.addTween
 	to: {rotation: -90, scale: 0.2, backgroundColor: "#00AAFF"}
 	options: {time: 0.25, curve: "Spring"}
 
 # Add pin
-myScene.addPin()
+myPin = myScene.addPin()
