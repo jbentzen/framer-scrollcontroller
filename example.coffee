@@ -39,3 +39,11 @@ myTween = myScene.addTween
 
 # Add pin
 myPin = myScene.addPin()
+
+
+# Listen for events with callback
+# ----------------------------------------------------------
+
+# Listen for event with callback
+myScene.onProgress (event, instance) ->
+  myTextLayer.text = "#{event.progress}"

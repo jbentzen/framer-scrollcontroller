@@ -55,7 +55,7 @@ _Works with [Framer](https://framer.com) v120 or later_
 ![ScrollController Example](assets/scrollcontroller_example.gif)
 
 ## Quick start
-To get started using the `ScrollController` you must start by creating a `Controller` to make the required connection to the `ScrollComponent`. Secondly you must add at least one `Scene` which defines in what part of the page/view something should happen. Finally you must add at least one `Tween` or `Pin` to define what needs to happen.
+To get started using the `ScrollController` you must start by creating a `Controller` to make the required connection to the `ScrollComponent`. Secondly you must add at least one `Scene` which defines in what part of the page/view something should happen. Finally you may add at least one `Tween` or `Pin` to define what needs to happen. Alternatively you may listen for events with callbacks to trigger your prototype.
 
 ##### Step 1: Import module
 ```coffee
@@ -102,6 +102,15 @@ myTween = myScene.addTween
 
 # Add pin
 myPin = myScene.addPin()
+```
+
+
+
+##### Step 4: Listen for events with callback
+```coffee
+# Listen for event with callback
+myScene.onProgress (event, instance) ->
+  myTextLayer.text = "#{event.progress}"
 ```
 
 ## Documentation
@@ -163,10 +172,10 @@ Add scene to controller.
 - `triggerLayer` – scene triggerLayer to define the start of the scene
 - `offset` – scene offset, from top/left of screen or from triggerLayer
 - `duration` – scene duration
-- `needle` – scene needle position, from begining to end of screen (0-1)
-- `reverse` – scene reverse state
+- `needle` – scene needle position, from begining to end of screen (0 to 1)
+- `reverse` – scene reversable state
 - `enabled` – scene enabled state
-- `guide` – scene guide indicators
+- `guide` – scene guide markers
 - `guideNeedleColor` – scene guide needle color
 - `guideStartColor` – scene guide start color
 - `guideEndColor` – scene guide end color
@@ -211,7 +220,7 @@ Scroll to scene, scene progress, layer and offset
 
 ##### Parameters:
 - `element` – scene or layer
-- `progress` – scene progress (0-1)
+- `progress` – scene progress (0 to 1)
 - `offset` – offset
 
 ```coffee
@@ -279,17 +288,17 @@ The scene defines in what part of the page/view something should happen and mana
 | `Scene.controller` | Object | `Controller` | Get scene controller |
 | `Scene.name` | String | `"."` | Get/Set scene name |
 | `Scene.triggerLayer` | Layer | `Undefined` | Get/Set triggerLayer |
-| `Scene.needle` | Number | `0.5` | Get/Set scene needle (0-1) |
+| `Scene.needle` | Number | `0.5` | Get/Set scene needle (0 to 1) |
 | `Scene.offset` | Number | `0` | Get/Set scene offset |
 | `Scene.duration` | Number | `0` | Get/Set scene duration |
-| `Scene.reverse` | Boolean | `true` | Get/Set scene reverse state |
+| `Scene.reverse` | Boolean | `true` | Get/Set scene reversable state |
 | `Scene.enabled` | Boolean | `true` | Get/Set scene enabled state |
 | `Scene.guide` | Boolean | `false` | Get scene guide |
 | `Scene.guideNeedleColor` | Color | `"#0066FF"` | Get scene guide needle guide |
 | `Scene.guideStartColor` | Color | `"#009933"` | Get scene guide start color |
 | `Scene.guideEndColor` | Color | `"#FF3333"` | Get scene guide end color |
 | `Scene.state` | String | `"before"`, `"during"` or `"after"` | Get scene state |
-| `Scene.progress` | Number | - | Get scene progress (0-1) |
+| `Scene.progress` | Number | - | Get scene progress (0 to 1) |
 | `Scene.start` | Number | - | Get scene start |
 | `Scene.end` | Number | - | Get scene end |
 | `Scene.needlePos`| Number | - | Get scene needle position |
@@ -475,44 +484,44 @@ myScene.onLeave ->
 ##### Event listeners with callbacks
 ```coffee
 # Listen for scene change with callback
-myScene.onChangeValue event, instance, ->
+myScene.onChangeValue (event, instance) ->
   print "Scene changed"
   print "Event: #{event.property}, #{event.value}"
 
 # Listen for scene shift with callback
-myScene.onShift event, instance, ->
+myScene.onShift (event, instance) ->
   print "Scene shifted"
   print "Event: #{event.reason}"
 
 # Listen for scene update with callback
-myScene.onUpdate event, instance, ->
+myScene.onUpdate (event, instance) ->
   print "Scene updated"
   print "Event: #{event.start}, #{event.end}, #{event.scrollPos}"
 
 # Listen for scene enter with callback
-myScene.onEnter event, instance, ->
+myScene.onEnter (event, instance) ->
   print "Scene entered"
   print "Event: #{event.progress}, #{event.state}, #{event.scrollDir}"
 
 # Listen for scene start with callback
-myScene.onStart event, instance, ->
+myScene.onStart (event, instance) ->
   print "Scene started"
-  print "Event: #{event.progress},#{event.state}, #{event.scrollDir}"
+  print "Event: #{event.progress}, #{event.state}, #{event.scrollDir}"
 
 # Listen for scene progress with callback
-myScene.onProgress event, instance, ->
+myScene.onProgress (event, instance) ->
   print "Scene progressed"
-  print "Event: #{event.progress},#{event.state}, #{event.scrollDir}"
+  print "Event: #{event.progress}, #{event.state}, #{event.scrollDir}"
 
 # Listen for scene end with callback
-myScene.onEnd event, instance, ->
+myScene.onEnd (event, instance) ->
   print "Scene ended"
-  print "Event: #{event.progress},#{event.state}, #{event.scrollDir}"
+  print "Event: #{event.progress}, #{event.state}, #{event.scrollDir}"
 
 # Listen for scene leave with callback
-myScene.onLeave event, instance, ->
+myScene.onLeave (event, instance) ->
   print "Scene left"
-  print "Event: #{event.progress},#{event.state}, #{event.scrollDir}"
+  print "Event: #{event.progress}, #{event.state}, #{event.scrollDir}"
 ```
 
 
